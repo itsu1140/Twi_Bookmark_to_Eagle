@@ -20,7 +20,7 @@ jobs:
         run: docker run --rm  -v ${{ github.workspace }}\windows\dist\:C:\dist\ pyinstaller-windows powershell -Command "pyinstaller twi_gui.py --onedir --onefile --clean --distpath /dist --workpath /windows/build --specpath /windows"
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: result-artifact
           path: ./windows/dist/main.exe
