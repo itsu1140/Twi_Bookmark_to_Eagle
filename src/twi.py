@@ -5,7 +5,6 @@ import aiohttp
 import asyncio
 
 from twikit import Client
-from dotenv import load_dotenv
 from datetime import datetime, timezone
 
 twi_num = 30
@@ -14,7 +13,6 @@ twi_num = 30
 async def main(cookie_path):
 
     client = Client(language="ja")
-    load_dotenv()
     try:
         if os.path.exists(cookie_path):
             client.load_cookies(cookie_path)
@@ -70,7 +68,7 @@ async def main(cookie_path):
 
         # Send the POST request
         async with aiohttp.ClientSession() as session:
-            async with session.post(f"http://{os.environ['IPv4']}:41595/api/item/addFromURLs", json=data) as response:
+            async with session.post(f"http://127.0.0.1:41595/api/item/addFromURLs", json=data) as response:
                 if response.status == 200:
                     result = await response.json()
                     print(result)
