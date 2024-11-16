@@ -1,4 +1,6 @@
 # Twi Bookmark to Eagle
+![image](https://github.com/user-attachments/assets/4a66709f-7020-4323-90e3-2f271ad4f95e)
+
 [Twikit](https://github.com/d60/twikit)と[Eagle API](https://api.eagle.cool/)を利用して，
 Twitterのブックマークから画像を[Eagle](https://jp.eagle.cool/)に保存し，取得に成功したツイートへのブックマークを解除するアプリです．
 
