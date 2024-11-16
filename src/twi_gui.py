@@ -6,7 +6,6 @@ import asyncio
 import tkinter as tk
 from tkinter import filedialog
 from twikit import Client
-from dotenv import load_dotenv
 from datetime import datetime, timezone
 
 # Default number of tweets
@@ -15,7 +14,6 @@ twi_num = 30
 
 async def main(cookie_path, twi_num):
     client = Client(language="ja")
-    load_dotenv()
     try:
         if os.path.exists(cookie_path):
             client.load_cookies(cookie_path)
