@@ -7,20 +7,18 @@ on:
 
 jobs:
   build-and-run:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Build Docker image
-        run: docker build  -f ./windows/Dockerfile -t pyinstaller-windows .
+        uses: actions/checkout@v4
       
-      - name: Run Docker container
-        run: docker run --rm -v ${{ github.workspace }}\windows\dist\:C:\dist\ pyinstaller-windows powershell -Command "pyinstaller twi_gui.py --onedir --onefile --clean --distpath C:\dist --workpath C:\windows\build --specpath C:\windows"
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Package Application
+        uses: JackMcKew/pyinstaller-action-windows@main
         with:
-          name: result-artifact
-          path: ./windows/dist/main.exe
+          path: src
+      
+      - uses: actions/upload-artifact@v4
+      with:
+        name: name-of-artifact
+        path: src/dist/windows
