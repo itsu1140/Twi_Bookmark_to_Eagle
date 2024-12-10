@@ -1,2 +1,7 @@
 .env
 cookies_*.json
+.python-version
+pyproject.toml
+.venv
+uv.lock
+*cache/
