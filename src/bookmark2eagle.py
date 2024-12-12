@@ -21,14 +21,12 @@ def have_quote(tweet):
 
 async def bookmark2eagle(cookie_path: str, twi_num: int = 30):
     client = Client(language="ja")
-    try:
-        if os.path.exists(cookie_path):
-            client.load_cookies(cookie_path)
-        else:
-            raise FileNotFoundError(
-                errno.ENOENT, os.strerror(errno.ENOENT), cookie_path
-            )
+    if os.path.exists(cookie_path):
+        client.load_cookies(cookie_path)
+    else:
+        raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), cookie_path)
 
+    try:
         bookmarks = await client.get_bookmarks(count=twi_num)
 
         items = []
@@ -65,10 +63,10 @@ async def bookmark2eagle(cookie_path: str, twi_num: int = 30):
         data = {"items": items}
 
         # Send the POST request
+        host = "http://127.0.0.1:41595/api/item/addFromURLs"
+        host = "http://172.29.192.1:41595/api/item/addFromURLs"
         async with aiohttp.ClientSession() as session:
-            async with session.post(
-                "http://127.0.0.1:41595/api/item/addFromURLs", json=data
-            ) as response:
+            async with session.post(host, json=data) as response:
                 if response.status == 200:
                     result = await response.json()
                     print(result)
